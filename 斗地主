@@ -1,0 +1,60 @@
+package douDiZhu;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+
+public class DouDiZhu {
+
+	public static void main(String[] args) {
+	/*
+	 * 1.将54张牌装入集合之中
+	 */
+		ArrayList<String> poker=new ArrayList<>();
+		String[] colors= {"♠","♥","♣","♦"};
+		String[] numbers= {"2","A","K","Q","J","10","9","8","7","6","5","4","3"};
+		poker.add("大王");
+		poker.add("小王");
+		for (String number : numbers) {
+			for (String color : colors) {
+				poker.add(color+number);
+			}
+		}
+		System.out.println("性感孙鹏，在线发牌");
+		System.out.println("=============================");
+        //System.out.println(poker);
+    /*
+     * 2.利用集合工具类collection中的shuffle方法洗牌
+     */
+        Collections.shuffle(poker);
+        System.out.println("洗牌");
+        System.out.println(poker);
+        System.out.println("=============================");
+    /*
+     * 3.发牌，定义4个集合，分别存储3个玩家的牌和底牌
+     */
+        ArrayList<String> play01=new ArrayList<>();
+        ArrayList<String> play02=new ArrayList<>();
+        ArrayList<String> play03=new ArrayList<>();
+        ArrayList<String> diPai=new ArrayList<>();
+        for (int i = 0; i < 54; i++) {
+			if(i<51) {
+        	if (i%3==0) {
+				play01.add(poker.get(i));
+			}else if (i%3==1) {
+				play02.add(poker.get(i));
+			}else if (i%3==2) {
+				play03.add(poker.get(i));
+			}
+		  }else {
+			  diPai.add(poker.get(i));
+		  }
+		}
+          System.out.println("狗雷的牌： "+play01);
+          System.out.println("帅正的牌： "+play02);
+          System.out.println("冬冬的牌： "+play03);
+          System.out.println("底牌：        "+diPai);
+	}
+
+}
